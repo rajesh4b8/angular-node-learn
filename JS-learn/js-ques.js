@@ -1,0 +1,3 @@
+
+
+let pname = 'global';

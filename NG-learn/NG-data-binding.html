@@ -1,0 +1,63 @@
+<html>
+<head>
+    <title>ng-shop</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <style>
+    .ng-scope{
+        border: 1px solid red;
+        padding: 15px;
+        margin: 5px;
+    }
+    </style>
+
+</head>
+
+<body class="container">
+
+    <div class="page-header"> NG-data-binding.html </div>
+
+    <div ng-app="demo">
+        <span>{{company}}</span>
+        <div class="well" ng-controller="UserController">
+            Name : <input ng-model="uname"/> 
+                   <button ng-click="loadUser()">load-user ( ng-click )</button>
+                   <button onclick="window.loadUser()">load-user ( on-click )</button>
+            <hr/>
+            Hello : <span>{{uname}}</span>
+        </div>    
+    
+    </div> 
+    
+       
+
+    <script src="angular-1.5.8/angular.js"></script>
+    <script>
+        var mod=angular.module('demo',[]);
+        mod.controller('UserController',function($scope,$rootScope){
+            
+            $scope.uname="guest";
+            
+            $scope.loadUser=function(){
+                $scope.uname="Nag";
+            }
+
+            window.loadUser=function(){
+                console.log('loading User...');
+                $scope.uname="Nagabhushanam";
+                $rootScope.company="CTS";
+                //$scope.$apply(); // runs watcher of complete ng-app
+                $scope.$digest();  // runs watchers of current & child-scope watchers
+            }
+
+            $scope.$watch('uname',function(newValue,oldValue){
+                console.log('$scope.uname custom-watcher running thru digest-loop');
+                console.log(newValue +" - "+oldValue);
+            });
+
+        });
+    </script>
+
+</body>
+
+</html>    

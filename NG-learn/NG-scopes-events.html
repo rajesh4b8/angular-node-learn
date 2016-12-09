@@ -1,0 +1,79 @@
+<html>
+<head>
+    <title>ng-shop</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <style>
+    .ng-scope{
+        border: 1px solid red;
+        padding: 15px;
+        margin: 5px;
+    }
+    </style>
+
+</head>
+
+<body class="container">
+
+    <div class="page-header"> NG- scopes </div>
+
+    <div ng-app="demo">
+        <span class="badge">{{name}}</span>
+        <div ng-controller="BoxController">
+            <span class="badge">{{name}}</span>
+            <div ng-controller="UserController">
+                <span class="badge">{{name}}</span>
+                <button ng-click="changeName()">change-name</button>
+                <div ng-controller="TextController">
+                    <span class="badge">{{name}}</span>
+                </div>    
+            </div>
+            <div ng-controller="UserController">
+                <span class="badge">{{name}}</span>
+            </div>    
+        </div>
+
+    </div>
+
+    <script src="angular-1.5.8/angular.js"></script>
+    <script>
+        
+        var mod=angular.module('demo',[]);
+
+        mod.controller('BoxController',function($scope,$rootScope){
+            $scope.$on('change-name',function(e,data){
+                $scope.name=data.name;
+                e.stopPropagation();
+            });
+        });
+
+        mod.controller('TextController',function($scope,$rootScope){
+            $scope.name='text';
+            $scope.$on('change-name',function(e,data){
+                $scope.name=data.name;
+                //e.stopPropagation();
+            });
+        });
+
+        mod.controller('UserController',function($scope,$rootScope){
+
+            $rootScope.$on('change-name',function(e,data){
+                $rootScope.name=data.name;
+            });
+
+            $scope.name='Nag';
+            //$scope.$parent.name=$scope.name;
+            $scope.changeName=function(){
+                $scope.name='Nagabhushanam';
+                //$scope.$parent.name=$scope.name;
+                $scope.$emit('change-name',{name:$scope.name});
+                $scope.$broadcast('change-name',{name:$scope.name});
+            }
+        });
+       
+
+    </script>
+
+</body>
+
+</html>    

@@ -1,0 +1,87 @@
+<html>
+
+<head>
+    <title>ng-shop</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+</head>
+
+<body class="container">
+
+    <div class="page-header"> NG-with-services-Ex3.html </div>
+
+    <div ng-app="demo">
+
+        <div class="well" ng-controller="HitController">
+            <button ng-click="doHit()" class="btn btn-sm">Hit-1</button>
+            <span class="badge">{{count}}</span>
+        </div>
+        <div class="well" ng-controller="HitController">
+            <button ng-click="doHit()" class="btn btn-sm">Hit-2</button>
+            <span class="badge">{{count}}</span>
+        </div>
+        <div class="well" ng-controller="KickController">
+            <button ng-click="doKick()" class="btn btn-sm">Kick-1</button>
+            <span class="badge">{{count}}</span>
+        </div>
+
+    </div>
+
+
+
+    <script src="angular-1.5.8/angular.js"></script>
+    <script>
+        var mod=angular.module('demo',[]);
+
+        mod.config(function(Auth_Key){
+            console.log('demo module config phase...');
+        });
+
+        mod.controller('HitController',function($scope,countService){
+            console.log('New HitController instance created...');
+            $scope.count=countService.getCount();
+            $scope.doHit=function(){
+                //$scope.count+=1;
+                 countService.doCount();
+                 $scope.count=countService.getCount();
+            };
+        })
+         mod.controller('KickController',function($scope,countService){
+            console.log('New KickController instance created...');
+           $scope.count=countService.getCount();
+            $scope.doKick=function(){
+                //$scope.count+=1;
+                 countService.doCount();
+                 $scope.count=countService.getCount();
+            };
+        })
+
+            var o={
+                    count:0,
+                    doCount:function(){
+                        this.count++;
+                    },
+                    getCount:function(){
+                        return this.count;
+                    }
+                };
+
+        // mod.factory('countService',function(){
+        //      console.log('countService instance created...');
+        //      return o;
+        // });
+
+
+        mod.value('countService',o);
+
+
+        var tnr={name:'Nag',doTeach:function(){}};
+        mod.value('tnrService',tnr);
+
+
+        mod.constant('Auth_Key','dbxjnbdhj34b4j35n634234dfgdfgdfg');
+
+    </script>
+
+</body>
+
+</html>

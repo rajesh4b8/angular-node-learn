@@ -1,0 +1,88 @@
+<html>
+<head>
+    <title>ng-shop</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+    <link href="jquery-ui-1.12.1/jquery-ui.css" rel="stylesheet">
+</head>
+
+<body class="container">
+    
+    <div class="page-header"> NG- directive-basics</div>
+    
+    <div ng-app="demo">
+
+        <div id="someId" my-dir1  company="cts">
+            <div class="well"> tanscluded content </div>
+        </div>
+
+    </div>
+
+    
+    <script src="angular-1.5.8/angular.js"></script>
+
+    <script>
+       var mod=angular.module('demo',[]);
+
+       mod.directive('myDir1',function(){
+           return{
+               restrict:'AE',
+               template:'<div class="well">DIR-1 <div ng-transclude></div> <div my-dir2></div> </div>',
+               transclude:true,
+               replace:false,
+               scope:false,
+               compile:function(jqElemnt,attrs){
+                   console.log('myDir1:compile()');
+                   jqElemnt.css('border','1px solid lime');
+                   jqElemnt.append('<span class="badge">by - Nag</span>');
+                   return{
+                       pre:function(scope,jqElement,attrs){
+                           console.log('myDir1:preLink()');
+                           scope.company=attrs.company;
+                       },
+                       post:function(scope,jqElement,attrs){
+                          console.log('myDir1:postLink()');
+                       }
+                   };
+               },
+               controller:function($scope){
+                    console.log('myDir1:controller()');
+                    $scope.sayHello=function(){
+                        console.log('Hello...');
+                    }
+               }
+           };
+       });
+
+
+
+        mod.directive('myDir2',function(){
+           return{
+               restrict:'AE',
+               template:'<div class="well">DIR-2 - {{organization}}</div>',
+               scope:false,
+               compile:function(jqElemnt,attrs){
+                   console.log('myDir2:compile()');
+                   jqElemnt.css('border','1px solid green');
+                   jqElemnt.append('<span class="badge">by - Ria</span>');
+                   return{
+                       pre:function(scope,jqElement,attrs){
+                           console.log('myDir2:preLink()');
+                       },
+                       post:function(scope,jqElement,attrs){
+                          console.log('myDir2:postLink()');
+                          scope.organization=scope.company;
+                       }
+                   };
+               },
+               controller:function($scope){
+                    console.log('myDir2:controller()');
+               }
+           };
+       });
+
+
+    </script>
+
+</body>
+
+</html>    

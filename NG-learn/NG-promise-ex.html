@@ -1,0 +1,56 @@
+<html>
+
+<head>
+    <title>ng-shop</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+</head>
+
+<body class="container">
+
+    <div class="page-header"> promise - pattern </div>
+
+    <script>
+
+        // module-1
+        var hotel={
+            getFood:function(){
+               
+                var promise=new Promise(function(resolve,reject){
+
+                    setTimeout(function(){
+                        //resolve('BIRYANNNNI');
+                        reject('SORRY>>>>>');
+                    },5000);
+
+                });
+
+                return promise;
+
+            }
+        };
+
+
+        // module-2
+
+        var trainer={
+            doTeach:function(){
+                console.log('teaching.....');
+                console.log('hungry....requesting food..');
+                var promise=hotel.getFood();
+                console.log('got promise , deferring actions to future');
+                promise.then(function(result){
+                    console.log('yummy...'+result);
+                },function(error){
+                    console.log('oops...'+error);
+                });
+                console.log('teaching further...finished.');
+            }
+        };
+
+        trainer.doTeach();
+
+    </script>
+
+</body>
+
+</html>

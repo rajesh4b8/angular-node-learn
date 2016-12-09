@@ -1,0 +1,23 @@
+
+
+how angular doing 2-way data-binding ?
+
+
+NG life-cycle
+
+compilation-phase:
+
+   for every model-property/expressions,
+   angular will create 'watcher(s)/listeners'
+
+   watchers read/write model when it is dirty from either side.
+
+   when/how watchers will execute ?
+
+   digest-loop will execute all watcher(s) when model is dirty.
+
+   we can aslo register 'custom-watcher' if required.
+   
+   ---------------------------------------------------
+
+

@@ -1,0 +1,15 @@
+
+
+
+  // REST API
+  ------------------
+  
+  
+  GET    /products
+  GET    /products/{id}
+  DELETE /products/{id}
+  POST   /products
+  PUT    /products/{id}  // create or update
+  
+  --------------------------------------
+  

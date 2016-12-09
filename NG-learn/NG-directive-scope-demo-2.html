@@ -1,0 +1,85 @@
+<html>
+<head>
+    <title>ng-shop</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <style>
+        .ng-scope{
+            border: 1px solid red;
+            padding: 15px;
+            margin: 5px;
+        }
+    </style>
+
+</head>
+
+<body class="container">
+    
+    <div class="page-header"> NG- NG-directive-scope-demo-1.html</div>
+    
+    <div ng-app="demo">
+      
+      <div ng-controller="ColorController" class="">
+       
+        <input ng-model="color"/>
+
+        <hr/>
+
+        <div my-hello-world color="red"></div>
+        <div my-hello-world ></div>
+
+      </div>    
+
+    </div>
+
+    <script src="jquery-3.1.1.js"></script>
+    <script src="angular-1.5.8/angular.js"></script>
+
+    <script>
+       var mod=angular.module('demo',[]);
+
+       mod.controller('ColorController',function($scope){
+           $scope.color="yellow";
+       });
+
+       mod.directive('myHelloWorld',function(){
+           return{
+               restrict:'AE',
+               //replace:true,
+               templateUrl:'templates/hello-world.html',
+               scope:true,
+               link:function(scope,jqElement,attrs){
+
+                   //console.log('my-hello-world : link()');
+                   //console.dir(scope);
+
+                   //console.log(scope.color);
+                   //scope.color='grey';
+
+                   jqElement.on('mouseover',function(e){
+                       jqElement.css('cursor','pointer');
+                   });
+
+                    jqElement.on('click',function(e){
+                        console.log('changing color');
+                        //jqElement.css('background-color','#def');
+                        scope.color="#def";
+                        scope.$digest();
+                   });
+
+                
+                // console.dir(attrs);
+
+                if(attrs.color){
+                    scope.color=attrs.color;
+                }
+
+               }
+           };
+       });
+
+    </script>
+
+</body>
+
+</html>    

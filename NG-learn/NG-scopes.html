@@ -1,0 +1,66 @@
+<html>
+<head>
+    <title>ng-shop</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <style>
+    .ng-scope{
+        border: 1px solid red;
+        padding: 15px;
+        margin: 5px;
+    }
+    </style>
+
+</head>
+
+<body class="container">
+
+    <div class="page-header"> NG- scopes </div>
+
+    <div ng-app="demo">
+        <span class="badge">{{color}}</span>
+        <button class="btn btn-sm" ng-click="changeColor()">change-color</button>
+    
+        <div ng-controller="ColorController">
+            <span class="badge">{{color}}</span>
+            <button class="btn btn-sm" ng-click="changeColor()">change-color</button>
+            <div ng-controller="TextController">
+                <span class="badge">{{color}}</span>
+            </div>    
+
+        </div>    
+        <div ng-controller="ColorController">
+            <span class="badge">{{color}}</span>
+        </div>    
+    
+    </div> 
+    
+
+    <script src="angular-1.5.8/angular.js"></script>
+    <script>
+        var mod=angular.module('demo',[]);
+
+        mod.run(function($rootScope){
+            $rootScope.color='red';
+            $rootScope.changeColor=function(){
+                $rootScope.color='green';
+            }
+        });
+
+
+        mod.controller('ColorController',function($scope){
+            $scope.color="yellow";
+            $scope.changeColor=function(){
+                $scope.color='pink';
+            }
+        });
+
+        mod.controller('TextController',function($scope){
+            //$scope.color="blue";
+        });
+
+    </script>
+
+</body>
+
+</html>    

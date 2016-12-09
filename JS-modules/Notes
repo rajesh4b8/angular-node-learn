@@ -1,0 +1,42 @@
+
+
+
+JS module standards 
+--------------------------------------
+
+
+1. AMD ( Async Module Definition )
+2. commonJS
+3. SystemJS
+4. UMD JS
+
+5. ECMAScript standard from js-modules  from ES2015/ES6
+
+---------------------------------------------
+
+AMD spec
+
+to create/define module:  define()
+to load module  :  require() 
+
+//--------------------------------------------
+
+commonJS standard:
+
+
+ why we need ?
+
+ --> simple
+ --> default standard to node.js
+
+ points:
+
+ --> every .js file is an module by default.
+ --> all variables/function in a .js file private to that.
+ --> need to export any abstractions explicitly export 
+     to other modules using 'module.export' object
+ --> use 'require' function to import any modules.
+
+
+
+

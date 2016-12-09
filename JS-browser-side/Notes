@@ -1,0 +1,75 @@
+
+
+what js can do on HTML-page in browser?
+
+
+ JS-lang using web-APIs can bring any dynamic func to web-page.
+
+ web-APIs implelemented and abstrcted as js-objects/functiosn by browsers.
+
+
+  e.g web APIs  ( DOM , XHR , Timer , etc... )
+
+
+  a. using DOM 
+
+  --> can create/update/delete/select HTML elements
+  --> can change element's attributes
+  --> can change element's style
+  --> can change element's inner-content
+  --> can handle events on HTML elements
+  --> can validate form-fields
+  --> can create rich UI-components
+
+  b. using XHR 
+
+  --> can communicate with server asycn , update results in page ( AJAX )
+
+
+  c. HTML5 APIs
+
+   --> audio/video
+   --> canvas
+   --> localStorage
+   --> webworker
+   --> websocket
+   --> geo
+
+   etc....
+
+ ---------------------------------  
+
+
+ complexity of plain-js ( script written by you on browser's APIs )
+
+
+ --> browser compatibility
+ --> too much code for simple oprns.
+ --> performance
+ --> memory management...
+
+ --> data-binding manual...
+
+ -------------------------------
+
+ solns
+
+ --> using JS-libaries and Frameworks
+
+
+    1. jQuery
+
+
+    limitation of jquery
+
+    --> close to DOM ( View )
+    --> data-binding manual/complex
+    --> no soln to separate View + logic + Data
+
+
+--------------------------------------------------
+
+
+Google Team  --> Angular 1.x
+
+--------------------------------------------------    

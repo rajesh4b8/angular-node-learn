@@ -1,0 +1,81 @@
+<html>
+<head>
+    <title>ng-shop</title>
+    <link href="css/bootstrap.css" rel="stylesheet">
+
+    <style>
+   
+    </style>
+
+</head>
+
+<body class="container">
+
+    <div class="page-header"> NG- validation </div>
+
+    <div ng-app="demo">
+        
+            <div class="row">
+                <div class="col-xs-6 col-sm-6 col-md-6">
+                    <form novalidate name="userForm" ng-controller="UserFormController" ng-submit="userForm.$valid && doSubmit()">
+                        <div class="form-group" ng-class="{'has-error':userForm.email.$invalid && userForm.email.$dirty}">
+                            <label>Email</label>
+                            <input class="form-control" 
+                                   name="email"
+                                   type="email"
+                                   required
+                                   autofocus 
+                                   ng-model="user.email"/>
+                             <div class="help-block" ng-show="userForm.email.$error.required && userForm.email.$dirty">Required</div>
+                             <div class="help-block" ng-show="userForm.email.$error.email && userForm.email.$dirty">Invalid Email</div>          
+                        </div>
+                         <div class="form-group" ng-class="{'has-error':userForm.email.$invalid && userForm.email.$dirty}">
+                            <label>Name</label>
+                            <input class="form-control" 
+                                   name="uname"
+                                   type="text"
+                                   required
+                                   ng-minlength="6"
+                                   autofocus 
+                                   ng-model="user.uname"/>
+                             <div class="help-block" ng-show="userForm.uname.$error.required && userForm.uname.$dirty">Required</div>
+                             <div class="help-block" ng-show="userForm.uname.$error.minlength && userForm.uname.$dirty">Min 6 chars</div>          
+                        </div>
+
+                        <button ng-disabled="userForm.$invalid" class="btn btn-primary">submit</button>
+
+                         <pre>
+                            {{userForm|json}}
+                        </pre>  
+                        <pre>
+                            {{userForm.email|json}}
+                        </pre>    
+
+                    </form>    
+                </div>    
+            </div>    
+
+    </div>
+
+    <script src="angular-1.5.8/angular.js"></script>
+    <script>
+        
+        var mod=angular.module('demo',[]);
+       
+
+        mod.controller('UserFormController',function($scope){
+            $scope.doSubmit=function(){
+                if($scope.userForm.$valid){
+                    console.log('form submitted...');
+                }else{
+                    console.log('invalid Form...');
+                }
+                
+            }
+        });
+
+    </script>
+
+</body>
+
+</html>    
